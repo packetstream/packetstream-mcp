@@ -1,6 +1,6 @@
-# PacketStream MCP server: Google search and web pages as Markdown for AI agents
+![PacketStream: the web for AI agents. Live Google results and web pages as Markdown, from one hosted MCP server.](.github/social-preview.png)
 
-![PacketStream](logo.png)
+# PacketStream MCP server: Google search and web pages as Markdown for AI agents
 
 PacketStream runs a hosted [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server that gives AI agents and LLM apps two web tools. `packetstream_search` runs a live Google search and returns the results as Markdown and JSON. `packetstream_fetch` fetches a web page through PacketStream's residential network and returns the page itself as Markdown, not a summary. Connect it to Claude Code, Codex, Cursor, Gemini CLI, VS Code, Claude Desktop, Cline or any other MCP client that supports remote servers.
 
@@ -165,7 +165,7 @@ Limits: all calls with one key share a limit of 20 per second, with bursts of 20
 - PacketStream does not store your search queries, the search results, the URLs you fetch or the page content. For each call, we record its time, the key or connected app, the type of request, the outcome, how long it took and the charge. The dashboard shows your recent requests and daily usage.
 - To answer a search, we send your query and its options to third-party search data providers from PacketStream's own account. We do not send them your account identity, API key or IP address.
 - Fetches go through the PacketStream residential network. A device on that network can read the content of a page only if the page uses unencrypted `http`.
-- An app that signs in never sees your password, API key, payment details or proxy traffic. It can use only the MCP tools. To disconnect an app, use the [MCP page of the dashboard](https://app.packetstream.io/dashboard/mcp). Removing PacketStream inside the app may not end its access.
+- An app that signs in never sees your password, API key, payment details or proxy traffic. It can use only the MCP tools. To disconnect an app, use the [MCP page of the dashboard](https://app.packetstream.io/dashboard/mcp). Disconnecting inside an app deletes the app's copy of the sign-in. Apps that support token revocation also end it with us; otherwise it stays valid until it goes unused for 30 days, or until you disconnect it on the dashboard.
 
 Read the full [Privacy Policy](https://packetstream.io/privacy-policy/) and [Terms of Service](https://packetstream.io/terms-of-service/).
 
