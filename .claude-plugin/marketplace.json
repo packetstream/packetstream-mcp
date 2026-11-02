@@ -5,14 +5,28 @@
     "email": "help@packetstream.io"
   },
   "metadata": {
-    "description": "PacketStream's plugin for Claude Code: live Google search and web page reading."
+    "description": "PacketStream's Claude Code plugin: live Google search and web pages as Markdown, from PacketStream's hosted MCP server."
   },
   "plugins": [
     {
       "name": "packetstream",
       "source": "./",
-      "description": "Live Google search and web page reading through PacketStream's hosted MCP server.",
-      "category": "productivity"
+      "description": "Live Google search results and web pages as Markdown for your AI agent, from PacketStream's hosted MCP server.",
+      "category": "productivity",
+      "keywords": [
+        "mcp",
+        "mcp-server",
+        "model-context-protocol",
+        "web-search",
+        "google-search",
+        "search-api",
+        "serp",
+        "web-scraping",
+        "fetch",
+        "markdown",
+        "ai-agents",
+        "llm"
+      ]
     }
   ]
 }

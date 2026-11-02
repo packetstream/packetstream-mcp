@@ -1,12 +1,14 @@
-# PacketStream MCP server
+# PacketStream MCP server: Google search and web pages as Markdown for AI agents
 
 ![PacketStream](logo.png)
 
-PacketStream runs a hosted [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server that gives AI agents two tools: live Google search and web page reading. This repository holds the plugin and extension files for Claude Code, Codex, Cursor and Gemini CLI. The server runs at PacketStream, so you install nothing but the plugin.
+PacketStream runs a hosted [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server that gives AI agents and LLM apps two web tools. `packetstream_search` runs a live Google search and returns the results as Markdown and JSON. `packetstream_fetch` fetches a web page through PacketStream's residential network and returns the page itself as Markdown, not a summary. Connect it to Claude Code, Codex, Cursor, Gemini CLI, VS Code, Claude Desktop, Cline or any other MCP client that supports remote servers.
+
+This repository holds the plugin and extension files for Claude Code, Codex, Cursor and Gemini CLI. The server runs at PacketStream, so you host nothing. Install the plugin for your client, or point any MCP client at the server URL.
 
 Full documentation: <https://packetstream.io/docs/mcp/>
 
-## Tools
+## Tools: web search and page fetching
 
 | Tool | What it does |
 |---|---|
@@ -22,7 +24,7 @@ Good to know about `packetstream_fetch`:
 - It does not read `robots.txt`. You decide which sites your agent reads, and you need any permission the law, a contract or the site operator requires. See [section 7 of our Terms of Service](https://packetstream.io/terms-of-service/#acceptable-use).
 - It marks page text as untrusted, so the agent treats it as data and not as instructions.
 
-The [MCP reference](https://packetstream.io/docs/mcp/reference/) lists every argument and result format.
+The [MCP reference](https://packetstream.io/docs/mcp/reference/) lists every argument and result format. The same API key also works with the REST [Search API](https://packetstream.io/docs/search-api/) and [Fetch API](https://packetstream.io/docs/fetch-api/) if you want to call them from your own code.
 
 ## Server URLs
 
@@ -40,7 +42,7 @@ The plugins in this repository use the sign-in URL.
 1. [Sign up](https://app.packetstream.io/signup?account=buy&next=mcp) and add funds to your balance.
 2. If your client uses an API key, create one on the [MCP page of the dashboard](https://app.packetstream.io/dashboard/mcp). The key is shown once, so copy it when it appears.
 
-## Install
+## Install the plugin or connect your client
 
 ### Claude Code
 
@@ -89,13 +91,64 @@ gemini extensions install https://github.com/packetstream/packetstream-mcp
 
 Then start Gemini CLI and run `/mcp auth packetstream` to sign in.
 
-### Other clients
+### VS Code
 
-[Client setup](https://packetstream.io/docs/mcp/clients/) covers VS Code, Claude Desktop, Claude custom connectors, Cline and other clients, with either an API key or sign-in.
+Add this to `.vscode/mcp.json` in a workspace, or run **MCP: Open User Configuration** to add it for every workspace. VS Code asks for your API key once and stores it securely:
+
+```json
+{
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "packetstream-api-key",
+      "description": "PacketStream API key",
+      "password": true
+    }
+  ],
+  "servers": {
+    "packetstream": {
+      "type": "http",
+      "url": "https://api.packetstream.io/v1/mcp",
+      "headers": { "Authorization": "Bearer ${input:packetstream-api-key}" }
+    }
+  }
+}
+```
+
+### Claude and Claude Desktop
+
+Add PacketStream as a custom connector. It signs in with your PacketStream account, so you need no key:
+
+1. In Claude, open **Customize > Connectors**, select **+ Add**, then **Add custom connector**.
+2. Name it `PacketStream` and enter `https://api.packetstream.io/v1/mcp/oauth` as the server URL.
+3. Claude opens PacketStream in your browser. Log in and select **Allow**.
+4. In a chat, turn PacketStream on with the **+** button, under **Connectors**.
+
+On Team and Enterprise plans, an owner adds the connector first; see [Claude custom connectors](https://packetstream.io/docs/mcp/clients/#claude-connectors). The connector belongs to your Claude account, so Claude Desktop can use it too. To use an API key in Claude Desktop instead, follow the [Claude Desktop setup](https://packetstream.io/docs/mcp/clients/#claude-desktop).
+
+### Cline
+
+Cline uses SSE unless you set the transport, so add `"type": "streamableHttp"` to the server in its MCP settings:
+
+```json
+{
+  "mcpServers": {
+    "packetstream": {
+      "type": "streamableHttp",
+      "url": "https://api.packetstream.io/v1/mcp",
+      "headers": { "Authorization": "Bearer YOUR_API_KEY" }
+    }
+  }
+}
+```
+
+### Other MCP clients
+
+Any client that supports remote Streamable HTTP servers can connect. Send your API key in the `Authorization` header to `https://api.packetstream.io/v1/mcp`, or use `https://api.packetstream.io/v1/mcp/oauth` if the client supports MCP sign-in (OAuth), as ChatGPT does. We have not tested ChatGPT. If the client runs local (stdio) servers only, use the [`mcp-remote` bridge](https://packetstream.io/docs/mcp/clients/#claude-desktop). [Client setup](https://packetstream.io/docs/mcp/clients/) has the configuration for each client and a troubleshooting guide.
 
 ### What we have tested
 
-We tested sign-in end to end with a [Claude custom connector](https://packetstream.io/docs/mcp/clients/#claude-connectors). We tested the API-key setup with Claude Code, Codex CLI and the `mcp-remote` bridge. We have not tested sign-in in Claude Code, Codex, Cursor or Gemini CLI; those steps follow each client's documentation. If sign-in fails in your client, use its [API-key setup](https://packetstream.io/docs/mcp/clients/).
+We tested sign-in end to end with a [Claude custom connector](https://packetstream.io/docs/mcp/clients/#claude-connectors). We tested the API-key setup with Claude Code, Codex CLI and the `mcp-remote` bridge. We have not tested sign-in in Claude Code, Codex, Cursor or Gemini CLI, or the VS Code and Cline setups; those steps follow each client's documentation. If sign-in fails in your client, use its [API-key setup](https://packetstream.io/docs/mcp/clients/).
 
 ## Pricing
 
