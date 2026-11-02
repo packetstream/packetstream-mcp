@@ -1,7 +1,7 @@
 {
   "name": "packetstream",
   "version": "1.0.0",
-  "description": "Live Google search and web page reading through PacketStream's hosted MCP server.",
+  "description": "Live Google search results and web pages as Markdown for Codex, from PacketStream's hosted MCP server.",
   "author": {
     "name": "PacketStream Inc",
     "email": "help@packetstream.io",
@@ -12,11 +12,17 @@
   "license": "Apache-2.0",
   "keywords": [
     "mcp",
+    "mcp-server",
+    "model-context-protocol",
     "web-search",
-    "web-scraping",
     "google-search",
+    "search-api",
+    "serp",
+    "web-scraping",
     "fetch",
-    "markdown"
+    "markdown",
+    "ai-agents",
+    "llm"
   ],
   "mcpServers": "./.mcp.json",
   "interface": {
