@@ -1,0 +1,10 @@
+{
+  "name": "packetstream",
+  "version": "1.0.0",
+  "description": "Live Google search and web page reading through PacketStream's hosted MCP server. Sign in with your PacketStream account; each successful call costs $0.0025 from your prepaid balance.",
+  "mcpServers": {
+    "packetstream": {
+      "httpUrl": "https://api.packetstream.io/v1/mcp/oauth"
+    }
+  }
+}
