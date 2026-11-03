@@ -2,7 +2,7 @@
   "name": "packetstream",
   "displayName": "PacketStream",
   "version": "1.0.0",
-  "description": "Live Google search results and web pages as Markdown for Claude Code, from PacketStream's hosted MCP server. Sign in with your PacketStream account; each successful call costs $0.0025 from your prepaid balance.",
+  "description": "Live web search results and web pages as Markdown for Claude Code, from PacketStream's hosted MCP server. Sign in with your PacketStream account; each successful call costs $0.0025 from your prepaid balance.",
   "author": {
     "name": "PacketStream Inc",
     "email": "help@packetstream.io",
@@ -11,7 +11,7 @@
   "homepage": "https://packetstream.io/docs/mcp/",
   "repository": "https://github.com/packetstream/packetstream-mcp",
   "license": "Apache-2.0",
-  "keywords": ["mcp", "mcp-server", "model-context-protocol", "web-search", "google-search", "search-api", "serp", "web-scraping", "fetch", "markdown", "ai-agents", "llm"],
+  "keywords": ["mcp", "mcp-server", "model-context-protocol", "web-search", "live-search", "search-api", "serp", "web-scraping", "fetch", "markdown", "ai-agents", "llm"],
   "icon": "./logo.png",
   "documentationUrl": "https://packetstream.io/docs/mcp/",
   "supportUrl": "https://packetstream.io/contact-us/",

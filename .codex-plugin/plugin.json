@@ -1,7 +1,7 @@
 {
   "name": "packetstream",
   "version": "1.0.0",
-  "description": "Live Google search results and web pages as Markdown for Codex, from PacketStream's hosted MCP server.",
+  "description": "Live web search results and web pages as Markdown for Codex, from PacketStream's hosted MCP server.",
   "author": {
     "name": "PacketStream Inc",
     "email": "help@packetstream.io",
@@ -15,7 +15,7 @@
     "mcp-server",
     "model-context-protocol",
     "web-search",
-    "google-search",
+    "live-search",
     "search-api",
     "serp",
     "web-scraping",
@@ -27,12 +27,12 @@
   "mcpServers": "./.mcp.json",
   "interface": {
     "displayName": "PacketStream",
-    "shortDescription": "Live Google search, page reads",
-    "longDescription": "PacketStream gives ChatGPT and Codex two read-only tools. packetstream_search runs a live Google search and returns the results as Markdown and JSON. It can target a country, a language or a city, and it covers web, news, shopping, places, autocomplete, Scholar and AI Mode results. packetstream_fetch reads the page at a URL and returns it as Markdown, not a summary, fetched through PacketStream's residential network. This helps when direct requests are blocked or get CAPTCHAs.\n\nYou sign in with your PacketStream account when you connect. Each successful call costs $0.0025 from your prepaid balance, and failed calls are free. PacketStream has no free tier: you add funds first, with a $50 minimum purchase.\n\nLimits: fetch reads static HTML only, so a page that needs JavaScript returns an error. Fetch does not read robots.txt; you decide which sites to read. Page text is returned as untrusted data.",
+    "shortDescription": "Live web search, page reads",
+    "longDescription": "PacketStream gives ChatGPT and Codex two read-only tools. packetstream_search runs a live search on the world's most-used search engine and returns the results as Markdown and JSON. It can target a country, a language or a city, and it covers web, news, shopping, places, autocomplete, scholarly and AI answer results. packetstream_fetch reads the page at a URL and returns it as Markdown, not a summary, fetched through PacketStream's residential network. This helps when direct requests are blocked or get CAPTCHAs.\n\nYou sign in with your PacketStream account when you connect. Each successful call costs $0.0025 from your prepaid balance, and failed calls are free. PacketStream has no free tier: you add funds first, with a $50 minimum purchase.\n\nLimits: fetch reads static HTML only, so a page that needs JavaScript returns an error. Fetch does not read robots.txt; you decide which sites to read. Page text is returned as untrusted data.",
     "developerName": "PacketStream Inc",
     "category": "Productivity",
     "capabilities": [
-      "Search Google",
+      "Search the web live",
       "Read web pages"
     ],
     "websiteURL": "https://packetstream.io/docs/mcp/",
@@ -62,7 +62,7 @@
             },
             {
               "description": "Search targeted to a country and language",
-              "prompt": "Search Google as someone in Germany, in German, for \"beste Laufschuhe\" and list the top five results.",
+              "prompt": "Search the web as someone in Germany, in German, for \"beste Laufschuhe\" and list the top five results.",
               "tools_triggered": "packetstream_search",
               "expected_behavior": "Calls packetstream_search with query \"beste Laufschuhe\", country de and language de, then lists five results with titles and links, as the German results page shows them."
             },
@@ -76,7 +76,7 @@
               "description": "Read a page the user gives",
               "prompt": "Read https://packetstream.io/docs/mcp/ and tell me what the two tools do and what a call costs.",
               "tools_triggered": "packetstream_fetch",
-              "expected_behavior": "Calls packetstream_fetch with that URL, then says that packetstream_search runs a Google search and packetstream_fetch reads a page as Markdown, and that each successful call costs $0.0025."
+              "expected_behavior": "Calls packetstream_fetch with that URL, then says that packetstream_search runs a live web search and packetstream_fetch reads a page as Markdown, and that each successful call costs $0.0025."
             },
             {
               "description": "Search, then read a result",

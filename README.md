@@ -1,8 +1,8 @@
-![PacketStream: the web for AI agents. Live Google results and web pages as Markdown, from one hosted MCP server.](.github/social-preview.png)
+![PacketStream: the web for AI agents. Live search results and web pages as Markdown, from one hosted MCP server.](.github/social-preview.png)
 
-# PacketStream MCP server: Google search and web pages as Markdown for AI agents
+# PacketStream MCP server: live web search and web pages as Markdown for AI agents
 
-PacketStream runs a hosted [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server that gives AI agents and LLM apps two web tools. `packetstream_search` runs a live Google search and returns the results as Markdown and JSON. `packetstream_fetch` fetches a web page through PacketStream's residential network and returns the page itself as Markdown, not a summary. Connect it to Claude Code, Codex, Cursor, Gemini CLI, VS Code, Claude Desktop, Cline or any other MCP client that supports remote servers.
+PacketStream runs a hosted [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server that gives AI agents and LLM apps two web tools. `packetstream_search` runs a live search on the world's most-used search engine and returns the results as Markdown and JSON. `packetstream_fetch` fetches a web page through PacketStream's residential network and returns the page itself as Markdown, not a summary. Connect it to Claude Code, Codex, Cursor, Gemini CLI, VS Code, Claude Desktop, Cline or any other MCP client that supports remote servers.
 
 This repository holds the plugin and extension files for Claude Code, Codex, Cursor and Gemini CLI. The server runs at PacketStream, so you host nothing. Install the plugin for your client, or point any MCP client at the server URL.
 
@@ -12,7 +12,7 @@ Full documentation: <https://packetstream.io/docs/mcp/>
 
 | Tool | What it does |
 |---|---|
-| `packetstream_search` | Runs a live Google search and returns the results as Markdown, with the JSON response as structured content. You can set the country, language, location, device, page and time range. Result types: `search`, `news`, `shopping`, `places`, `autocomplete`, `scholar` and `ai_mode`. |
+| `packetstream_search` | Runs a live web search and returns the results as Markdown, with the JSON response as structured content. You can set the country, language, location, device, page and time range. Result types: `search`, `news`, `shopping`, `places`, `autocomplete`, `scholar` and `ai_mode`. |
 | `packetstream_fetch` | Reads one public `http` or `https` page and returns it as Markdown, not a summary, with the final URL, HTTP status and title. The request goes through PacketStream's residential network. |
 
 Both tools only read. Apart from the charge for each successful call, they change nothing on your computer or in your PacketStream account.
