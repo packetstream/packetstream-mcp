@@ -2,7 +2,7 @@
 
 # PacketStream MCP server: live web search and web pages as Markdown for AI agents
 
-PacketStream runs a hosted [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server that gives AI agents and LLM apps two web tools. `packetstream_search` runs a live search on the world's most-used search engine and returns the results as Markdown and JSON. `packetstream_fetch` fetches a web page through PacketStream's residential network and returns the page itself as Markdown, not a summary. Connect it to Claude Code, Codex, Cursor, Gemini CLI, VS Code, Claude Desktop, Cline or any other MCP client that supports remote servers.
+PacketStream runs a hosted [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server that gives AI agents and LLM apps two web tools. `packetstream_search` runs a live search on the world's most-used search engine and returns the results as Markdown and JSON. `packetstream_fetch` fetches a web page through PacketStream's residential network and returns the page itself as Markdown, not a summary. Connect it to Claude Code, Codex, Cursor, Gemini CLI, VS Code, Claude Desktop, Cline or any other MCP client that supports remote servers. Each successful call costs $0.0025 ($2.50 per 1,000) from a prepaid balance, with no subscription; see [Pricing](#pricing).
 
 This repository holds the plugin and extension files for Claude Code, Codex, Cursor and Gemini CLI. The server runs at PacketStream, so you host nothing. Install the plugin for your client, or point any MCP client at the server URL.
 
