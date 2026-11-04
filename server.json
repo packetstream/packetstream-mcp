@@ -1,0 +1,30 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.packetstream/mcp",
+  "title": "PacketStream",
+  "description": "Live web search results and web pages as Markdown; page fetches use a residential network.",
+  "version": "1.5.0",
+  "websiteUrl": "https://packetstream.io/docs/mcp/",
+  "repository": {
+    "url": "https://github.com/packetstream/packetstream-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.packetstream.io/v1/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "Bearer <PacketStream API key>",
+          "isRequired": true,
+          "isSecret": true
+        }
+      ]
+    },
+    {
+      "type": "streamable-http",
+      "url": "https://api.packetstream.io/v1/mcp/oauth"
+    }
+  ]
+}

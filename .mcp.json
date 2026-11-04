@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "packetstream": {
+      "type": "http",
+      "url": "https://api.packetstream.io/v1/mcp/oauth",
+      "extensions": {
+        "com.openai": {
+          "auth": {
+            "type": "oauth",
+            "client": { "mode": "dcr" }
+          }
+        }
+      }
+    }
+  }
+}

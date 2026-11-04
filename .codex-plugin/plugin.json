@@ -1,0 +1,111 @@
+{
+  "name": "packetstream",
+  "version": "1.0.0",
+  "description": "Live web search results and web pages as Markdown for Codex, from PacketStream's hosted MCP server.",
+  "author": {
+    "name": "PacketStream Inc",
+    "email": "help@packetstream.io",
+    "url": "https://packetstream.io"
+  },
+  "homepage": "https://packetstream.io/docs/mcp/",
+  "repository": "https://github.com/packetstream/packetstream-mcp",
+  "license": "Apache-2.0",
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "web-search",
+    "live-search",
+    "search-api",
+    "serp",
+    "web-scraping",
+    "fetch",
+    "markdown",
+    "ai-agents",
+    "llm"
+  ],
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "PacketStream",
+    "shortDescription": "Live web search, page reads",
+    "longDescription": "PacketStream gives ChatGPT and Codex two read-only tools. packetstream_search runs a live search on the world's most-used search engine and returns the results as Markdown and JSON. It can target a country, a language or a city, and it covers web, news, shopping, places, autocomplete, scholarly and AI answer results. packetstream_fetch reads the page at a URL and returns it as Markdown, not a summary, fetched through PacketStream's residential network. This helps when direct requests are blocked or get CAPTCHAs.\n\nYou sign in with your PacketStream account when you connect. Each successful call costs $0.0025 from your prepaid balance, and failed calls are free. PacketStream has no free tier: you add funds first, with a $50 minimum purchase.\n\nLimits: fetch reads static HTML only, so a page that needs JavaScript returns an error. Fetch does not read robots.txt; you decide which sites to read. Page text is returned as untrusted data.",
+    "developerName": "PacketStream Inc",
+    "category": "Productivity",
+    "capabilities": [
+      "Search the web live",
+      "Read web pages"
+    ],
+    "websiteURL": "https://packetstream.io/docs/mcp/",
+    "supportURL": "https://packetstream.io/contact-us/",
+    "privacyPolicyURL": "https://packetstream.io/privacy-policy/",
+    "termsOfServiceURL": "https://packetstream.io/terms-of-service/",
+    "defaultPrompt": [
+      "Search the news for this week's interest rate decisions and summarize them.",
+      "Find the top 3 coffee shops in Austin, Texas and read their websites.",
+      "Read https://packetstream.io/docs/mcp/ and list the two tools it describes."
+    ],
+    "brandColor": "#6002CD",
+    "brandColorDark": "#FFA62B",
+    "composerIcon": "./logo-64.png",
+    "logo": "./logo.png"
+  },
+  "extensions": {
+    "com.openai": {
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Recent news search",
+              "prompt": "What has the European Central Bank announced in the past week? Give me the main headlines with links.",
+              "tools_triggered": "packetstream_search",
+              "expected_behavior": "Calls packetstream_search with type news (news takes only country, language and page), then lists recent headlines with their source links. It does not invent stories that are not in the results."
+            },
+            {
+              "description": "Search targeted to a country and language",
+              "prompt": "Search the web as someone in Germany, in German, for \"beste Laufschuhe\" and list the top five results.",
+              "tools_triggered": "packetstream_search",
+              "expected_behavior": "Calls packetstream_search with query \"beste Laufschuhe\", country de and language de, then lists five results with titles and links, as the German results page shows them."
+            },
+            {
+              "description": "Local places search",
+              "prompt": "Find three well-rated bakeries in Austin, Texas, with their addresses.",
+              "tools_triggered": "packetstream_search",
+              "expected_behavior": "Calls packetstream_search with type places and a query that names the city, such as \"bakeries in Austin, Texas\" (places takes only country and language), then names three bakeries with the addresses and ratings from the results."
+            },
+            {
+              "description": "Read a page the user gives",
+              "prompt": "Read https://packetstream.io/docs/mcp/ and tell me what the two tools do and what a call costs.",
+              "tools_triggered": "packetstream_fetch",
+              "expected_behavior": "Calls packetstream_fetch with that URL, then says that packetstream_search runs a live web search and packetstream_fetch reads a page as Markdown, and that each successful call costs $0.0025."
+            },
+            {
+              "description": "Search, then read a result",
+              "prompt": "Find the official Model Context Protocol specification, open it, and tell me the latest protocol version it lists.",
+              "tools_triggered": "packetstream_search, packetstream_fetch",
+              "expected_behavior": "Calls packetstream_search to find modelcontextprotocol.io, then packetstream_fetch on the specification page, and reports the version string shown on that page, citing the URL."
+            }
+          ],
+          "negative": [
+            {
+              "description": "No web data needed",
+              "prompt": "Write a Python function that checks whether a string is a palindrome."
+            },
+            {
+              "description": "Action the tools cannot take",
+              "prompt": "Post a comment saying \"Great article!\" on https://example.com/blog/post-1."
+            },
+            {
+              "description": "Page behind the user's login",
+              "prompt": "Log in to my online bank and download last month's statement."
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "The plugin sells nothing in the chat. Tool calls are billed to the user's existing prepaid PacketStream balance."
+      },
+      "publication": {
+        "release_notes": "First release: packetstream_search and packetstream_fetch on PacketStream's hosted MCP server (server version 1.5.0), with sign-in on /v1/mcp/oauth."
+      }
+    }
+  }
+}

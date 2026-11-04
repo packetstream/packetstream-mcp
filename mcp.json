@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "packetstream": {
+      "url": "https://api.packetstream.io/v1/mcp/oauth"
+    }
+  }
+}
